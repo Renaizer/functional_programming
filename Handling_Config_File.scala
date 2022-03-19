@@ -1,3 +1,11 @@
+/*
+libs
+
+"com.typesafe" % "config" % "1.3.2"
+
+
+*/
+
 import com.typesafe.config.{Config, ConfigFactory, ConfigResolveOption}
 
 val config : Config = ConfigFactory.parseFile(new File(configPath)).resolve

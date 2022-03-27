@@ -1,0 +1,24 @@
+import cats._
+import cats.implicits._
+case class accounts(id:String, name:String)
+
+object accounts{
+  implicit val universalEq:Eq[accounts] = Eq.fromUniversalEquals
+
+  object instance{
+    implicit val ByIdEq:Eq[accounts] = Eq.instance[accounts]((a1,a2) =>a1.id == a2.id)
+  }
+}
+
+val Account1 = accounts("123", "hamid")
+val Account2 = accounts("123", "javid")
+
+
+
+Eq[accounts].eqv(Account1,Account2)
+accounts.instance.ByIdEq.eqv(Account1,Account1)
+
+
+
+implicit val Eqer = accounts.instance.ByIdEq
+Account1 === Account2
